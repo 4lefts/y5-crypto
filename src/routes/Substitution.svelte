@@ -56,6 +56,7 @@
 
 <Header
   title={"Substitution Cipher"}
+  color={"dodgerblue"}
   {showInfo}
   on:handleShow={() => (showInfo = !showInfo)}
 />

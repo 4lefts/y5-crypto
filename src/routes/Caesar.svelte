@@ -44,7 +44,7 @@
 
 <Header
   title={"Caesar Cipher"}
-  color={"#ff3030;"}
+  color={"tomato;"}
   {showInfo}
   on:handleShow={() => (showInfo = !showInfo)}
 />

@@ -6,7 +6,7 @@
   <title>Y5 Cryptography</title>
 </svelte:head>
 
-<div class="header-container" style={`--header-color: mediumpurple;`}>
+<div class="header-container" style={`--header-color: darkgrey;`}>
   <header>
     <h1>Year 5 - We Are Cryptographers</h1>
   </header>
@@ -20,12 +20,9 @@
   </p>
 
   <nav>
-    <a href="/#/caesar-cipher" style="--link-color: #ff0000">1. Caesar Cipher</a
-    >
-    <a
-      href="/#/substitution-cipher"
-      style="--link-color: #00ee00"
-      class="not-ready">2. Substitution Cipher</a
+    <a href="/#/caesar-cipher" style="--link-color: tomato">1. Caesar Cipher</a>
+    <a href="/#/substitution-cipher" style="--link-color: dodgerblue"
+      >2. Substitution Cipher</a
     >
     <a
       href="/#/frequency-analysis"
@@ -34,7 +31,7 @@
     >
     <a
       href="/#/password-cracking"
-      style="--link-color: #FF1493"
+      style="--link-color: hotpink"
       class="not-ready">4. Password Cracking</a
     >
     <a href="/#/vocab" style="--link-color: teal">Useful Vocabulary</a>
