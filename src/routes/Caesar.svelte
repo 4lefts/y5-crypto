@@ -1,12 +1,12 @@
 <script>
   import Header from "../components/Header.svelte";
+  import Arrows from "../components/Arrows.svelte";
   import { slide, fade } from "svelte/transition";
 
   let plaintext = "";
   let ciphertext = "";
   let offset = 1;
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  const arrows = Array(alphabet.length).fill("&darr;");
   let showInfo = false;
   $: key = computeKey(alphabet, offset);
 
@@ -51,7 +51,7 @@
 
 <main in:fade>
   {#if showInfo}
-    <div transition:slide class="info-group">
+    <div transition:slide class="input-group">
       <div class="about">
         <p>
           The <strong>Caesar Cipher</strong> is a simple cipher for
@@ -69,19 +69,18 @@
       <input
         style="--focus-color: #0099ff;"
         type="number"
+        step="1"
         min="0"
         max="26"
         name="offset"
         title="how far should we shift the alphabet?"
         bind:value={offset}
       />
-      <div class="alphabet">
+      <div class="key">
         <div>
           {alphabet}
         </div>
-        <div>
-          {#each arrows as arrow}{@html arrow}{/each}
-        </div>
+        <Arrows />
         <div>{key}</div>
       </div>
     </div>
@@ -116,90 +115,3 @@
     </div>
   </div>
 </main>
-
-<style>
-  .input-group,
-  .info-group {
-    display: flex;
-    flex-direction: column;
-    margin: 1em 0 0 0;
-  }
-
-  .info-group {
-    margin-bottom: 2em;
-  }
-
-  label {
-    font-size: 1.6em;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0.7em 0 0.1em 0;
-  }
-
-  input {
-    padding: 10px;
-    height: 50px;
-    background-color: whitesmoke;
-    border: 2px solid #000;
-    text-transform: lowercase;
-    box-shadow: 2px 2px black;
-    transition: all 0.1s ease;
-  }
-
-  input:hover {
-    background-color: white;
-    box-shadow: 4px 4px black;
-  }
-
-  input:focus {
-    border-color: var(--focus-color);
-    box-shadow: 4px 4px var(--focus-color);
-    background-color: white;
-    outline: none;
-  }
-
-  input[type="number"] {
-    width: 140px;
-  }
-
-  .button-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .button-group button {
-    width: 140px;
-    height: 50px;
-    font-weight: 700;
-    background-color: whitesmoke;
-    border: 2px solid #000;
-    box-shadow: 2px 2px black;
-    outline: none;
-    transition: all 0.3s ease;
-  }
-
-  .button-group button:hover {
-    cursor: pointer;
-    background-color: white;
-    box-shadow: 4px 4px black;
-  }
-
-  .button-group button:focus,
-  .button-group button:active {
-    background-color: white;
-    border-color: var(--focus-color);
-    box-shadow: 4px 4px var(--focus-color);
-  }
-
-  .alphabet {
-    width: 100%;
-    padding: 10px;
-    background-color: whitesmoke;
-    font-family: monospace;
-    font-size: 2em;
-    letter-spacing: 0.4em;
-    border: 2px solid #000;
-    box-shadow: 2px 2px black;
-  }
-</style>
