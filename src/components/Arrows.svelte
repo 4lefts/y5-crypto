@@ -1,5 +1,6 @@
 <script>
-  const arrows = Array(26).fill("&darr;");
+  export let length;
+  const arrows = Array(length).fill("&darr;");
 </script>
 
 <div>

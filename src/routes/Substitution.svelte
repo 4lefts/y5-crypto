@@ -1,11 +1,13 @@
 <script>
   import { onMount } from "svelte";
+  import { slide } from "svelte/transition";
   import Header from "../components/Header.svelte";
+  import Arrows from "../components/Arrows.svelte";
   let plaintext = "";
   let ciphertext = "";
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   let key = "";
-  let showInfo = true;
+  let showInfo = false;
   let isRemovingSpaces = false;
 
   onMount(() => {
@@ -64,7 +66,7 @@
 
 <main>
   {#if showInfo}
-    <div class="input-group">
+    <div transition:slide class="input-group">
       <div class="about">
         <p>
           The <strong>Substitution Cipher</strong> is another simple cipher for
@@ -89,6 +91,7 @@
           <div>
             {alphabet}
           </div>
+          <Arrows length={alphabet.length} />
           <div>
             {key}
           </div>
@@ -96,14 +99,17 @@
       </div>
     </div>
 
-    <label for="spaces">Remove Spaces?</label>
-    <input
-      id="spaces"
-      title="remove spaces from ciphertext?"
-      type="checkbox"
-      bind:value={isRemovingSpaces}
-      on:click={() => (isRemovingSpaces = !isRemovingSpaces)}
-    />
+    <label class="checkbox" for="spaces"
+      >Remove Spaces?
+      <input
+        id="spaces"
+        title="remove spaces from ciphertext?"
+        type="checkbox"
+        bind:value={isRemovingSpaces}
+        on:click={() => (isRemovingSpaces = !isRemovingSpaces)}
+      />
+      <span class="checkmark" />
+    </label>
   {/if}
   <div class="input-group" style="--focus-color: #00ff00;">
     <label for="plaintext">Plain text:</label>

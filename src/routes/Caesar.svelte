@@ -80,7 +80,7 @@
         <div>
           {alphabet}
         </div>
-        <Arrows />
+        <Arrows length={alphabet.length} />
         <div>{key}</div>
       </div>
     </div>
