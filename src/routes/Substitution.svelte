@@ -112,7 +112,7 @@
     </label>
   {/if}
   <div class="input-group" style="--focus-color: #00ff00;">
-    <label for="plaintext">Plain text:</label>
+    <label for="plaintext">Plaintext:</label>
     <input
       type="text"
       name="plaintext"
@@ -127,7 +127,7 @@
   </div>
 
   <div class="input-group" style="--focus-color: #ff0000;">
-    <label for="ciphertext">Cipher text:</label>
+    <label for="ciphertext">Ciphertext:</label>
     <input
       type="text"
       name="ciphertext"

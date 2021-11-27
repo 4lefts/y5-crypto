@@ -12,7 +12,7 @@
     "/vocab": Vocab,
     "/caesar-cipher": Caesar,
     "/substitution-cipher": Substitution,
-    // "/frequency-analysis": Frequency,
+    "/frequency-analysis": Frequency,
     // "/password-cracking": Passwords,
     "*": Home,
   };

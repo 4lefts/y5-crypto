@@ -24,15 +24,11 @@
     <a href="/#/substitution-cipher" style="--link-color: dodgerblue"
       >2. Substitution Cipher</a
     >
-    <a
-      href="/#/frequency-analysis"
-      style="--link-color: #0000ff"
-      class="not-ready">3. Frequency Analysis</a
+    <a href="/#/frequency-analysis" style="--link-color: hotpink"
+      >3. Frequency Analysis</a
     >
-    <a
-      href="/#/password-cracking"
-      style="--link-color: hotpink"
-      class="not-ready">4. Password Cracking</a
+    <a href="/#/password-cracking" style="--link-color: green" class="not-ready"
+      >4. Password Cracking</a
     >
     <a href="/#/vocab" style="--link-color: teal">Useful Vocabulary</a>
   </nav>
