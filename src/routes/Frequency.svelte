@@ -5,50 +5,25 @@
   import { slide, fade } from "svelte/transition";
 
   Chart.register(...registerables);
+  // Chart.defaults.font.family = "'PT Mono', monospace;";
+  // Chart.defaults.font.size = 20;
 
   let canvas, myChart;
   let showInfo = false;
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  let ciphertext = "";
-  const analysis = Array(26).fill(0);
-  // const analysis = {
-  //   a: 0,
-  //   b: 0,
-  //   c: 0,
-  //   d: 0,
-  //   e: 0,
-  //   f: 0,
-  //   g: 0,
-  //   h: 0,
-  //   i: 0,
-  //   j: 0,
-  //   k: 0,
-  //   l: 0,
-  //   m: 0,
-  //   n: 0,
-  //   o: 0,
-  //   p: 0,
-  //   q: 0,
-  //   r: 0,
-  //   s: 0,
-  //   t: 0,
-  //   u: 0,
-  //   v: 0,
-  //   w: 0,
-  //   x: 0,
-  //   y: 0,
-  //   z: 0,
-  //   other: 0,
-  // };
+  let ciphertext =
+    "GFS WMY OG LGDVS MF SFNKYHOSU ESLLMRS, PC WS BFGW POL DMFRQMRS, PL OG CPFU M UPCCSKSFO HDMPFOSXO GC OIS LMES DMFRQMRS DGFR SFGQRI OG CPDD GFS LISSO GK LG, MFU OISF WS NGQFO OIS GNNQKKSFNSL GC SMNI DSOOSK. WS NMDD OIS EGLO CKSJQSFODY GNNQKKPFR DSOOSK OIS 'CPKLO', OIS FSXO EGLO GNNQKKPFR DSOOSK OIS 'LSNGFU' OIS CGDDGWPFR EGLO GNNQKKPFR DSOOSK OIS 'OIPKU', MFU LG GF, QFOPD WS MNNGQFO CGK MDD OIS UPCCSKSFO DSOOSKL PF OIS HDMPFOSXO LMEHDS. OISF WS DGGB MO OIS NPHISK OSXO WS WMFO OG LGDVS MFU WS MDLG NDMLLPCY POL LYEAGDL. WS CPFU OIS EGLO GNNQKKPFR LYEAGD MFU NIMFRS PO OG OIS CGKE GC OIS 'CPKLO' DSOOSK GC OIS HDMPFOSXO LMEHDS, OIS FSXO EGLO NGEEGF LYEAGD PL NIMFRSU OG OIS CGKE GC OIS 'LSNGFU' DSOOSK, MFU OIS CGDDGWPFR EGLO NGEEGF LYEAGD PL NIMFRSU OG OIS CGKE GC OIS 'OIPKU' DSOOSK, MFU LG GF, QFOPD WS MNNGQFO CGK MDD LYEAGDL GC OIS NKYHOGRKME WS WMFO OG LGDVS.";
+  const frequencies = Array(26).fill(0);
+
   function analyze() {
     resetAnalysis();
     const letters = ciphertext.toLowerCase().split("");
     letters.forEach((l, i) => {
       const index = alphabet.indexOf(l);
       if (index === -1) return;
-      analysis[index] += 1;
+      frequencies[index] += 1;
     });
-    updateChart(analysis);
+    updateChart(frequencies);
   }
 
   function updateChart(newData) {
@@ -65,22 +40,16 @@
         datasets: [
           {
             label: "Frequency of letter",
-            data: analysis,
+            data: frequencies,
             backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
+              "rgba(255, 105, 180, 1)",
+              "rgba(218, 247, 166, 1)",
+              "rgba(255, 195, 0, 1)",
             ],
             borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
+              "rgba(255, 105, 180, 1)",
+              "rgba(218, 247, 166, 1)",
+              "rgba(255, 195, 0, 1)",
             ],
             borderWidth: 1,
           },
@@ -92,17 +61,26 @@
             beginAtZero: true,
           },
         },
+        plugins: {
+          title: {
+            display: true,
+            text: "Frequency of letters in Ciphertext",
+            align: "start",
+          },
+        },
       },
     });
   });
+
   function resetAnalysis() {
-    for (const letter in analysis) {
-      analysis[letter] = 0;
+    for (const letter in frequencies) {
+      frequencies[letter] = 0;
     }
   }
+
   function reset() {
     resetAnalysis();
-    updateChart(analysis);
+    updateChart(frequencies);
     ciphertext = "";
   }
 </script>
@@ -117,41 +95,41 @@
 <main in:fade>
   {#if showInfo}
     <div transition:slide>
-      <ul>
-        <li>Order Of Frequency Of Single Letters</li>
-        <li>E T A O I N S H R D L U</li>
-        <li>Order Of Frequency Of Digraphs</li>
-        <li>
+      <dl>
+        <dt>Order Of Frequency Of Single Letters</dt>
+        <dd>E T A O I N S H R D L U</dd>
+        <dt>Order Of Frequency Of Digraphs</dt>
+        <dd>
           th er on an re he in ed nd ha at en es of or nt ea ti to it st io le
           is ou ar as de rt ve
-        </li>
-        <li>Order Of Frequency Of Trigraphs</li>
-        <li>the and tha ent ion tio for nde has nce edt tis oft sth men</li>
-        <li>Order Of Frequency Of Most Common Doubles</li>
-        <li>ss ee tt ff ll mm oo</li>
-        <li>Order Of Frequency Of Initial Letters</li>
-        <li>T O A W B C D S F M R H I Y E G L N P U J K</li>
-        <li>Order Of Frequency Of Final Letters</li>
-        <li>E S T D N R Y F L O G H A K M P U W</li>
-        <li>One-Letter Words</li>
-        <li>a, I</li>
-        <li>Most Frequent Two-Letter Words</li>
-        <li>
+        </dd>
+        <dt>Order Of Frequency Of Trigraphs</dt>
+        <dd>the and tha ent ion tio for nde has nce edt tis oft sth men</dd>
+        <dt>Order Of Frequency Of Most Common Doubles</dt>
+        <dd>ss ee tt ff ll mm oo</dd>
+        <dt>Order Of Frequency Of Initial Letters</dt>
+        <dd>T O A W B C D S F M R H I Y E G L N P U J K</dd>
+        <dt>Order Of Frequency Of Final Letters</dt>
+        <dd>E S T D N R Y F L O G H A K M P U W</dd>
+        <dt>One-Letter Words</dt>
+        <dd>a, I</dd>
+        <dt>Most Frequent Two-Letter Words</dt>
+        <dd>
           of, to, in, it, is, be, as, at, so, we, he, by, or, on, do, if, me,
           my, up, an, go, no, us, am
-        </li>
-        <li>Most Frequent Three-Letter Words</li>
-        <li>
+        </dd>
+        <dt>Most Frequent Three-Letter Words</dt>
+        <dd>
           the, and, for, are, but, not, you, all, any, can, had, her, was, one,
           our, out, day, get, has, him, his, how, man, new, now, old, see, two,
           way, who, boy, did, its, let, put, say, she, too, use
-        </li>
-        <li>Most Frequent Four-Letter Words</li>
-        <li>
+        </dd>
+        <dt>Most Frequent Four-Letter Words</dt>
+        <dd>
           that, with, have, this, will, your, from, they, know, want, been,
           good, much, some, time
-        </li>
-      </ul>
+        </dd>
+      </dl>
     </div>
   {/if}
 
