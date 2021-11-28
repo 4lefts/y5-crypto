@@ -3,9 +3,9 @@
   import { slide } from "svelte/transition";
   import Header from "../components/Header.svelte";
   import Arrows from "../components/Arrows.svelte";
+  import { alphabetString } from "../utils/letter_utils.js";
   let plaintext = "";
   let ciphertext = "";
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
   let key = "";
   let showInfo = false;
   let isRemovingSpaces = false;
@@ -15,9 +15,9 @@
   });
 
   function computeKey() {
-    let letters = alphabet.split("");
+    let letters = alphabetString.split("");
     // knuth shuffle of letters
-    for (let index = alphabet.length; index > 0; index--) {
+    for (let index = alphabetString.length; index > 0; index--) {
       let randomIndex = Math.floor(Math.random() * index);
       let randomValue = letters[randomIndex];
       let indexValue = letters[index];
@@ -38,7 +38,7 @@
         return true;
       })
       .map((l) => {
-        const index = alphabet.indexOf(l);
+        const index = alphabetString.indexOf(l);
         if (index === -1) return l;
         return key[index];
       })
@@ -51,7 +51,7 @@
       .map((l) => {
         const index = key.indexOf(l);
         if (index === -1) return l;
-        return alphabet[index];
+        return alphabetString[index];
       })
       .join("");
   }
@@ -89,9 +89,9 @@
       <div style="font-family: monospace">
         <div class="key">
           <div>
-            {alphabet}
+            {alphabetString}
           </div>
-          <Arrows length={alphabet.length} />
+          <Arrows length={alphabetString.length} />
           <div>
             {key}
           </div>
