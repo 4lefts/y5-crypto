@@ -2,15 +2,15 @@
   import { Chart, registerables } from "chart.js";
   import { onMount } from "svelte";
   import Header from "../components/Header.svelte";
+  import LetterGraph from "../components/LetterGraph.svelte";
+  import { alphabet, letterFrequencies } from "../utils/letter_utils.js";
   import { slide, fade } from "svelte/transition";
 
+  $: letterProportions = letterFrequencies.map((l) => l.proportion);
   Chart.register(...registerables);
-  // Chart.defaults.font.family = "'PT Mono', monospace;";
-  // Chart.defaults.font.size = 20;
 
-  let canvas, myChart;
+  let analysisCanvas, analysisGraph, englishFrequenciesCanvas;
   let showInfo = false;
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
   let ciphertext =
     "GFS WMY OG LGDVS MF SFNKYHOSU ESLLMRS, PC WS BFGW POL DMFRQMRS, PL OG CPFU M UPCCSKSFO HDMPFOSXO GC OIS LMES DMFRQMRS DGFR SFGQRI OG CPDD GFS LISSO GK LG, MFU OISF WS NGQFO OIS GNNQKKSFNSL GC SMNI DSOOSK. WS NMDD OIS EGLO CKSJQSFODY GNNQKKPFR DSOOSK OIS 'CPKLO', OIS FSXO EGLO GNNQKKPFR DSOOSK OIS 'LSNGFU' OIS CGDDGWPFR EGLO GNNQKKPFR DSOOSK OIS 'OIPKU', MFU LG GF, QFOPD WS MNNGQFO CGK MDD OIS UPCCSKSFO DSOOSKL PF OIS HDMPFOSXO LMEHDS. OISF WS DGGB MO OIS NPHISK OSXO WS WMFO OG LGDVS MFU WS MDLG NDMLLPCY POL LYEAGDL. WS CPFU OIS EGLO GNNQKKPFR LYEAGD MFU NIMFRS PO OG OIS CGKE GC OIS 'CPKLO' DSOOSK GC OIS HDMPFOSXO LMEHDS, OIS FSXO EGLO NGEEGF LYEAGD PL NIMFRSU OG OIS CGKE GC OIS 'LSNGFU' DSOOSK, MFU OIS CGDDGWPFR EGLO NGEEGF LYEAGD PL NIMFRSU OG OIS CGKE GC OIS 'OIPKU' DSOOSK, MFU LG GF, QFOPD WS MNNGQFO CGK MDD LYEAGDL GC OIS NKYHOGRKME WS WMFO OG LGDVS.";
   const frequencies = Array(26).fill(0);
@@ -23,34 +23,26 @@
       if (index === -1) return;
       frequencies[index] += 1;
     });
-    updateChart(frequencies);
+    updateAnalysisGraph(frequencies);
   }
 
-  function updateChart(newData) {
-    myChart.data.datasets[0].data = newData;
-    myChart.update();
+  function updateAnalysisGraph(newData) {
+    analysisGraph.data.datasets[0].data = newData;
+    analysisGraph.update();
   }
 
   onMount(() => {
-    const ctx = canvas.getContext("2d");
-    myChart = new Chart(ctx, {
+    const analysisCtx = analysisCanvas.getContext("2d");
+    analysisGraph = new Chart(analysisCtx, {
       type: "bar",
       data: {
-        labels: alphabet.split(""),
+        labels: alphabet,
         datasets: [
           {
             label: "Frequency of letter",
             data: frequencies,
-            backgroundColor: [
-              "rgba(255, 105, 180, 1)",
-              "rgba(218, 247, 166, 1)",
-              "rgba(255, 195, 0, 1)",
-            ],
-            borderColor: [
-              "rgba(255, 105, 180, 1)",
-              "rgba(218, 247, 166, 1)",
-              "rgba(255, 195, 0, 1)",
-            ],
+            backgroundColor: ["rgba(255, 195, 0, 1)"],
+            borderColor: ["rgba(255, 195, 0, 1)"],
             borderWidth: 1,
           },
         ],
@@ -80,7 +72,7 @@
 
   function reset() {
     resetAnalysis();
-    updateChart(frequencies);
+    updateAnalysisGraph(frequencies);
     ciphertext = "";
   }
 </script>
@@ -95,6 +87,7 @@
 <main in:fade>
   {#if showInfo}
     <div transition:slide>
+      <LetterGraph labels={alphabet} data={letterProportions} />
       <dl>
         <dt>Order Of Frequency Of Single Letters</dt>
         <dd>E T A O I N S H R D L U</dd>
@@ -146,5 +139,5 @@
       <button on:click={reset}>Reset</button>
     </div>
   </div>
-  <canvas bind:this={canvas} width="950" height="400" />
+  <canvas bind:this={analysisCanvas} width="950" height="400" />
 </main>
