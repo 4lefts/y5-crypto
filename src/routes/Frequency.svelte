@@ -97,6 +97,11 @@
         &quot;the&quot; really easily, then start to unpick the whole
         ciphertext.
       </p>
+      <p>
+        This method is not perfect - you need quite a long piece of ciphertext
+        for it work, otherwise there isn&#39;t much point counting the frequecy
+        of letters.
+      </p>
     </div>
   {/if}
 
