@@ -1,78 +1,45 @@
 <script>
   import { Chart, registerables } from "chart.js";
-  import { onMount } from "svelte";
   import Header from "../components/Header.svelte";
   import LetterGraph from "../components/LetterGraph.svelte";
   import { alphabetArray, letterFrequencies } from "../utils/letter_utils.js";
   import { slide, fade } from "svelte/transition";
 
-  $: letterFrequenciesArray = letterFrequencies.map((l) => l.frequency);
+  $: letterFrequenciesArray = letterFrequencies.map((l) => l.frequency); //for English plaintext
   Chart.register(...registerables);
 
-  // let analysisCanvas, analysisGraph, englishFrequenciesCanvas;
-  let showInfo = true;
+  let showInfo = false;
   let ciphertext =
     "GFS WMY OG LGDVS MF SFNKYHOSU ESLLMRS, PC WS BFGW POL DMFRQMRS, PL OG CPFU M UPCCSKSFO HDMPFOSXO GC OIS LMES DMFRQMRS DGFR SFGQRI OG CPDD GFS LISSO GK LG, MFU OISF WS NGQFO OIS GNNQKKSFNSL GC SMNI DSOOSK. WS NMDD OIS EGLO CKSJQSFODY GNNQKKPFR DSOOSK OIS 'CPKLO', OIS FSXO EGLO GNNQKKPFR DSOOSK OIS 'LSNGFU' OIS CGDDGWPFR EGLO GNNQKKPFR DSOOSK OIS 'OIPKU', MFU LG GF, QFOPD WS MNNGQFO CGK MDD OIS UPCCSKSFO DSOOSKL PF OIS HDMPFOSXO LMEHDS. OISF WS DGGB MO OIS NPHISK OSXO WS WMFO OG LGDVS MFU WS MDLG NDMLLPCY POL LYEAGDL. WS CPFU OIS EGLO GNNQKKPFR LYEAGD MFU NIMFRS PO OG OIS CGKE GC OIS 'CPKLO' DSOOSK GC OIS HDMPFOSXO LMEHDS, OIS FSXO EGLO NGEEGF LYEAGD PL NIMFRSU OG OIS CGKE GC OIS 'LSNGFU' DSOOSK, MFU OIS CGDDGWPFR EGLO NGEEGF LYEAGD PL NIMFRSU OG OIS CGKE GC OIS 'OIPKU' DSOOSK, MFU LG GF, QFOPD WS MNNGQFO CGK MDD LYEAGDL GC OIS NKYHOGRKME WS WMFO OG LGDVS.";
   const frequencies = Array(26).fill(0);
+  let doubles = Array(26).fill(0);
 
   function analyze() {
     resetAnalysis();
     const letters = ciphertext.toLowerCase().split("");
-    letters.forEach((l, i) => {
+    let previousLetter = "";
+    letters.forEach((l) => {
       const index = alphabetArray.indexOf(l);
+      // count frequency of doubles
+      if (l === previousLetter) {
+        doubles[index] += 1;
+      }
+      previousLetter = l;
+      // count freqency of letters
       if (index === -1) return;
       frequencies[index] += 1;
     });
-    // updateAnalysisGraph(frequencies);
   }
-
-  // function updateAnalysisGraph(newData) {
-  //   analysisGraph.data.datasets[0].data = newData;
-  //   analysisGraph.update();
-  // }
-
-  // onMount(() => {
-  //   const analysisCtx = analysisCanvas.getContext("2d");
-  //   analysisGraph = new Chart(analysisCtx, {
-  //     type: "bar",
-  //     data: {
-  //       labels: alphabetArray,
-  //       datasets: [
-  //         {
-  //           label: "Frequency of letter",
-  //           data: frequencies,
-  //           backgroundColor: ["rgba(255, 195, 0, 1)"],
-  //           borderColor: ["rgba(255, 195, 0, 1)"],
-  //           borderWidth: 1,
-  //         },
-  //       ],
-  //     },
-  //     options: {
-  //       scales: {
-  //         y: {
-  //           beginAtZero: true,
-  //         },
-  //       },
-  //       plugins: {
-  //         title: {
-  //           display: true,
-  //           text: "Frequency of letters in Ciphertext",
-  //           align: "start",
-  //         },
-  //       },
-  //     },
-  //   });
-  // });
 
   function resetAnalysis() {
     for (const letter in frequencies) {
       frequencies[letter] = 0;
+      doubles[letter] = 0;
     }
   }
 
   function reset() {
     resetAnalysis();
-    // updateAnalysisGraph(frequencies);
     ciphertext = "";
   }
 </script>
@@ -146,6 +113,12 @@
       <button on:click={reset}>Reset</button>
     </div>
   </div>
-  <!-- <canvas bind:this={analysisCanvas} width="950" height="400" /> -->
+  <h2>Frequency of Each Letter in Ciphertext</h2>
   <LetterGraph labels={alphabetArray} data={frequencies} />
+  <h2>Frequency of Double Letters in Ciphertext</h2>
+  <LetterGraph
+    labels={alphabetArray}
+    data={doubles}
+    backgroundColor={"rgba(255, 195, 0, 0.7)"}
+  />
 </main>

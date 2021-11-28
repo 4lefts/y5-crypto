@@ -3,13 +3,14 @@
   export let height = 250;
   export let labels = [];
   export let data = [];
+  export let backgroundColor = "rgba(50, 205, 50, 0.7)";
   import { Chart, registerables } from "chart.js";
   Chart.register(...registerables);
 
   function makeGraph(node, params) {
     let { dataLabels, dataSeries } = params;
-    let graphCtx = node.getContext("2d");
-    let graph = new Chart(graphCtx, {
+    let ctx = node.getContext("2d");
+    let graph = new Chart(ctx, {
       type: "bar",
       data: {
         labels: dataLabels,
@@ -17,7 +18,7 @@
           {
             label: "Frequency of letter",
             data: dataSeries,
-            backgroundColor: ["rgba(255, 195, 0, 0.7)"],
+            backgroundColor,
             borderWidth: 0,
           },
         ],
@@ -36,12 +37,15 @@
         graph.data.datasets[0].data = newParams.dataSeries;
         graph.update();
       },
+      destroy: () => {
+        graph.destroy();
+      },
     };
   }
 </script>
 
 <canvas
-  use:makeGraph={{ dataLabels: labels, dataSeries: data }}
+  use:makeGraph={{ dataLabels: labels, dataSeries: data, backgroundColor }}
   {width}
   {height}
 />
