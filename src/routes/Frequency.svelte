@@ -70,7 +70,11 @@
         has been encoded to &quot;u&quot;.
       </p>
       <p>This graph shows how common each letter is in English:</p>
-      <LetterGraph labels={alphabetArray} data={letterFrequenciesArray} />
+      <LetterGraph
+        labels={alphabetArray}
+        data={letterFrequenciesArray}
+        backgroundColor={"rgba(0, 191, 255, 0.7)"}
+      />
       <p>
         We can also look for other patterns in English. For example, there are
         only 2 words that have one letter - &quot;a&quot; and &quot;I&quot;.
