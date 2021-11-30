@@ -9,8 +9,7 @@
   Chart.register(...registerables);
 
   let showInfo = false;
-  let ciphertext =
-    "GFS WMY OG LGDVS MF SFNKYHOSU ESLLMRS, PC WS BFGW POL DMFRQMRS, PL OG CPFU M UPCCSKSFO HDMPFOSXO GC OIS LMES DMFRQMRS DGFR SFGQRI OG CPDD GFS LISSO GK LG, MFU OISF WS NGQFO OIS GNNQKKSFNSL GC SMNI DSOOSK. WS NMDD OIS EGLO CKSJQSFODY GNNQKKPFR DSOOSK OIS 'CPKLO', OIS FSXO EGLO GNNQKKPFR DSOOSK OIS 'LSNGFU' OIS CGDDGWPFR EGLO GNNQKKPFR DSOOSK OIS 'OIPKU', MFU LG GF, QFOPD WS MNNGQFO CGK MDD OIS UPCCSKSFO DSOOSKL PF OIS HDMPFOSXO LMEHDS. OISF WS DGGB MO OIS NPHISK OSXO WS WMFO OG LGDVS MFU WS MDLG NDMLLPCY POL LYEAGDL. WS CPFU OIS EGLO GNNQKKPFR LYEAGD MFU NIMFRS PO OG OIS CGKE GC OIS 'CPKLO' DSOOSK GC OIS HDMPFOSXO LMEHDS, OIS FSXO EGLO NGEEGF LYEAGD PL NIMFRSU OG OIS CGKE GC OIS 'LSNGFU' DSOOSK, MFU OIS CGDDGWPFR EGLO NGEEGF LYEAGD PL NIMFRSU OG OIS CGKE GC OIS 'OIPKU' DSOOSK, MFU LG GF, QFOPD WS MNNGQFO CGK MDD LYEAGDL GC OIS NKYHOGRKME WS WMFO OG LGDVS.";
+  let ciphertext = "";
   const frequencies = Array(26).fill(0);
   let doubles = Array(26).fill(0);
 
@@ -69,7 +68,7 @@
         ciphertext is say, &quot;u&quot;, then we can guess that &quot;e&quot;
         has been encoded to &quot;u&quot;.
       </p>
-      <p>This graph shows how common each letter is in English:</p>
+      <h2>Frequency of Each Letter in English</h2>
       <LetterGraph
         labels={alphabetArray}
         data={letterFrequenciesArray}
@@ -109,7 +108,7 @@
     </div>
   {/if}
 
-  <div class="input-group" style="--focus-color: #00ff00;">
+  <div class="input-group" style="--focus-color: hotpink;">
     <label for="ciphertext">Ciphertext</label>
     <textarea
       name="ciphertext"
