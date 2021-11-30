@@ -68,12 +68,6 @@
         ciphertext is say, &quot;u&quot;, then we can guess that &quot;e&quot;
         has been encoded to &quot;u&quot;.
       </p>
-      <h2>Frequency of Each Letter in English</h2>
-      <LetterGraph
-        labels={alphabetArray}
-        data={letterFrequenciesArray}
-        backgroundColor={"rgba(0, 191, 255, 0.7)"}
-      />
       <p>
         We can also look for other patterns in English. For example, there are
         only 2 words that have one letter - &quot;a&quot; and &quot;I&quot;.
@@ -112,7 +106,7 @@
     <label for="ciphertext">Ciphertext</label>
     <textarea
       name="ciphertext"
-      placeholder="Encrypted text to analyze"
+      placeholder="Enter text to analyze"
       title="Paste encrypted text to analyze here."
       bind:value={ciphertext}
     />
@@ -121,6 +115,12 @@
       <button on:click={reset}>Reset</button>
     </div>
   </div>
+  <h2>Frequency of Each Letter in English</h2>
+  <LetterGraph
+    labels={alphabetArray}
+    data={letterFrequenciesArray}
+    backgroundColor={"rgba(0, 191, 255, 0.7)"}
+  />
   <h2>Frequency of Each Letter in Ciphertext</h2>
   <LetterGraph labels={alphabetArray} data={frequencies} />
   <h2>Frequency of Double Letters in Ciphertext</h2>
