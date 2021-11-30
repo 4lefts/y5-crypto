@@ -42,6 +42,12 @@
         "Changing a message into a code - it doesn't have to be secret",
     },
     {
+      term: "Frequency",
+      isOpen: false,
+      definition:
+        "How often something happens or appears, such as how often a letter appears in a piece of text",
+    },
+    {
       term: "Encrypt",
       isOpen: false,
       definition:
