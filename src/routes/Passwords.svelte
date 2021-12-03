@@ -9,11 +9,15 @@
 
   function crackPassword() {
     duration = 0;
+    guess = "";
     const start = new Date().getTime();
+    // this is obviously wrong - we need to pad out the whole string of characters
     for (const passwordLetter of password) {
       for (const alphabetLetter of alphabetString) {
+        console.log(`${passwordLetter} = ${alphabetLetter}`);
         if (passwordLetter === alphabetLetter) {
           guess += alphabetLetter;
+          console.log(guess);
           break;
         }
       }
@@ -50,9 +54,9 @@
     </div>
   </div>
   <pre>{password}</pre>
-  {#if guess.length}
-    <h2>{guess}</h2>
-  {/if}
+  <!-- {#if guess.length} -->
+  <h2>Guess is {guess}</h2>
+  <!-- {/if} -->
   {#if duration > 0}
     <h2>That took {duration / 1000} seconds</h2>
   {/if}
