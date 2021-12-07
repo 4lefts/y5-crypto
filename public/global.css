@@ -24,11 +24,12 @@ body {
 }
 
 a {
+  color: dodgerblue;
   text-decoration: none;
 }
 
 a:visited {
-  color: #333;
+  color: royalblue;
 }
 
 a:hover {
@@ -104,10 +105,6 @@ header button:hover {
   cursor: pointer;
   background-color: white;
   box-shadow: 4px 4px black;
-}
-
-p a {
-  color: tomato;
 }
 
 .input-group {
