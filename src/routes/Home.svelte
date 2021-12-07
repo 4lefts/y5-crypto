@@ -18,6 +18,15 @@
     code-breaking that we are learning about in school. Hopefully they're
     useful!
   </p>
+  <p>
+    They are hugely indebted to <a href="https://simonsingh.net/"
+      >Simon Singh's</a
+    >
+    website
+    <a href="https://www.simonsingh.net/The_Black_Chamber/index.html"
+      >The Black Chamber</a
+    >.
+  </p>
 
   <nav>
     <a href="/#/caesar-cipher" style="--link-color: tomato">1. Caesar Cipher</a>
