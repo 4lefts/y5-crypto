@@ -2,9 +2,15 @@
   import { fade, slide } from "svelte/transition";
   const vocab = [
     {
+      term: "Brute Force",
+      isOpen: false,
+      definition:
+        "A way of cracking a cipher or password by repeatedly trying keys until one works",
+    },
+    {
       term: "Cipher",
       isOpen: false,
-      definition: "An agreed algorithm for encrypting of decrypting a message",
+      definition: "An agreed algorithm for encrypting and decrypting a message",
     },
     {
       term: "Ciphertext",
