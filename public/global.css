@@ -179,11 +179,22 @@ header button:hover {
   box-shadow: 4px 4px black;
 }
 
-.input-group button:focus,
+.input-group button:hover,
 .input-group button:active {
   background-color: white;
   border-color: var(--focus-color);
   box-shadow: 4px 4px var(--focus-color);
+}
+
+button:disabled {
+  opacity: 0.4;
+}
+
+button:disabled:hover {
+  cursor: default;
+  background-color: whitesmoke;
+  border-color: black;
+  box-shadow: 2px 2px black;
 }
 
 .key {

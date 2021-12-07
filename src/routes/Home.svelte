@@ -65,7 +65,7 @@
     box-shadow: 4px 4px var(--link-color);
   }
 
-  nav a.not-ready {
+  /* nav a.not-ready {
     background-color: #f8f8f8;
     color: #dcdcdc;
     border-color: #dcdcdc;
@@ -83,5 +83,5 @@
     right: 20px;
     color: var(--link-color);
     filter: opacity(50%);
-  }
+  } */
 </style>

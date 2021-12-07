@@ -1,14 +1,24 @@
 <script>
-  import { tick } from "svelte";
-
   import { fade, slide } from "svelte/transition";
   import Header from "../components/Header.svelte";
   import { alphabetArray } from "../utils/letter_utils";
+
   let showInfo = false;
+  let hidden = true; // whether to show or hide the password in the input
   let password = "";
   $: if (password.length > 7) {
     password = password.slice(0, 7);
   }
+
+  function checkPassword(pswd) {
+    if (pswd.length < 1) return false;
+    for (let letter of pswd) {
+      if (alphabetArray.indexOf(letter) == -1) return false;
+    }
+    return true;
+  }
+
+  $: legal = checkPassword(password);
 
   let guess = "";
   let guessing = false;
@@ -71,7 +81,6 @@
 <main>
   {#if showInfo}
     <div transition:slide>
-      <h2 id="cracking-passwords">Cracking Passwords</h2>
       <p>
         Why is it important to have a strong password? What might happen if
         someone knew your passwords? What could they do?
@@ -112,35 +121,51 @@
   {/if}
   <div class="input-group" style="--focus-color: darkorchid;">
     <label for="password"
-      >Password <span>Maximum 8 characters, lowercase letters only</span></label
+      >Password <span>Maximum 7 characters, lowercase letters only</span></label
     >
-    <input
-      name="password"
-      type="password"
-      title="enter a password to test"
-      placeholder="enter a password"
-      bind:value={password}
-    />
+    {#if hidden}
+      <input
+        name="password"
+        type="password"
+        title="enter a password to test"
+        placeholder="enter a password"
+        bind:value={password}
+      />
+    {:else}
+      <input
+        name="password"
+        type="text"
+        title="enter a password to test"
+        placeholder="enter a password"
+        bind:value={password}
+      />
+    {/if}
     <div class="length-display">Length: {password.length}</div>
-    <div class="length-display">Password: {password}</div>
     <div class="button-group">
       <button
-        on:click={async () => {
+        disabled={!legal}
+        on:click={() => {
           guessing = true;
           duration = 0;
           guess = "";
           setTimeout(() => {
             findPassword();
-          }, 1000);
+          }, 100);
         }}>Crack</button
+      >
+      <button on:click={() => (hidden = !hidden)}
+        >{#if hidden}Show{:else}Hide{/if} Password</button
       >
     </div>
   </div>
+  {#if !legal && password.length > 1}<h2>
+      Lowercase letters only, please.
+    </h2>{/if}
   {#if guessing}<h2>Thinking...</h2>{/if}
   {#if guess}<h2>The password is {guess}</h2>{/if}
   {#if duration > 0}
     <div transition:fade class="duration-display">
-      That took: {minutes} minutes {seconds} seconds
+      That took: {minutes} minutes {seconds} seconds.
     </div>
   {/if}
 </main>
@@ -157,5 +182,8 @@
     color: dimgray;
     padding: 0.2em 0 0.8em 0;
     font-weight: 700;
+  }
+  input[name="password"] {
+    text-transform: none;
   }
 </style>
