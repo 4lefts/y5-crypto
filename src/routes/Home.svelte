@@ -30,13 +30,13 @@
 
   <nav>
     <a href="/#/caesar-cipher" style="--link-color: tomato">1. Caesar Cipher</a>
-    <a href="/#/substitution-cipher" style="--link-color: dodgerblue"
+    <a href="/#/substitution-cipher" class="not-yet" style="--link-color: dodgerblue"
       >2. Substitution Cipher</a
     >
-    <a href="/#/frequency-analysis" style="--link-color: hotpink"
+    <a href="/#/frequency-analysis" class="not-yet" style="--link-color: hotpink"
       >3. Frequency Analysis</a
     >
-    <a href="/#/password-cracking" style="--link-color: darkorchid"
+    <a href="/#/password-cracking" class="not-yet" style="--link-color: darkorchid"
       >4. Password Cracking</a
     >
     <a href="/#/vocab" style="--link-color: teal">Useful Vocabulary</a>
@@ -74,23 +74,23 @@
     box-shadow: 4px 4px var(--link-color);
   }
 
-  /* nav a.not-ready {
+  nav a.not-yet {
     background-color: #f8f8f8;
     color: #dcdcdc;
     border-color: #dcdcdc;
     box-shadow: none;
   }
 
-  nav a.not-ready:hover {
+  nav a.not-yet:hover {
     cursor: default;
   }
 
-  nav a.not-ready::after {
+  nav a.not-yet::after {
     content: "Coming soon!";
     position: absolute;
     bottom: 5px;
     right: 20px;
     color: var(--link-color);
     filter: opacity(50%);
-  } */
+  }
 </style>
