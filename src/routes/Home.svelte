@@ -30,7 +30,7 @@
 
   <nav>
     <a href="/#/caesar-cipher" style="--link-color: tomato">1. Caesar Cipher</a>
-    <a href="/#/substitution-cipher" class="not-yet" style="--link-color: dodgerblue"
+    <a href="/#/substitution-cipher" style="--link-color: dodgerblue"
       >2. Substitution Cipher</a
     >
     <a href="/#/frequency-analysis" class="not-yet" style="--link-color: hotpink"
