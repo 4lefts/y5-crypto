@@ -21,4 +21,10 @@
 <Router {routes} />
 <footer>
   <p>By Stephen Ball</p>
+  <p>
+    Hugely indebted to <a href="https://simonsingh.net/">Simon Singh's</a>
+    website<a href="https://www.simonsingh.net/The_Black_Chamber/index.html"
+      >The Black Chamber</a
+    >.
+  </p>
 </footer>
