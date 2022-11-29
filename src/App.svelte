@@ -12,8 +12,8 @@
     "/vocab": Vocab,
     "/caesar-cipher": Caesar,
     "/substitution-cipher": Substitution,
-//     "/frequency-analysis": Frequency,
-//     "/password-cracking": Passwords,
+    "/frequency-analysis": Frequency,
+    //     "/password-cracking": Passwords,
     "*": Home,
   };
 </script>
