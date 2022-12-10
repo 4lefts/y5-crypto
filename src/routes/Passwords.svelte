@@ -24,11 +24,9 @@
   let guessing = false;
   let found = false;
   let duration = 0;
-  $: seconds = new Intl.NumberFormat(
-    "en-GB",
-    { maximumSignificantDigits: 3 },
-    (duration / 1000) % 60
-  );
+  $: seconds = new Intl.NumberFormat("en-GB", {
+    maximumSignificantDigits: 3,
+  }).format((duration / 1000) % 60);
   $: minutes = Math.floor(duration / 60000);
 
   function findPassword() {
