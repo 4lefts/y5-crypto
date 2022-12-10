@@ -36,10 +36,8 @@
     <a href="/#/frequency-analysis" style="--link-color: hotpink"
       >3. Frequency Analysis</a
     >
-    <a
-      href="/#/password-cracking"
-      class="not-yet"
-      style="--link-color: darkorchid">4. Password Cracking</a
+    <a href="/#/password-cracking" style="--link-color: darkorchid"
+      >4. Password Cracking</a
     >
     <a href="/#/vocab" style="--link-color: teal">Useful Vocabulary</a>
   </nav>

@@ -13,7 +13,7 @@
     "/caesar-cipher": Caesar,
     "/substitution-cipher": Substitution,
     "/frequency-analysis": Frequency,
-    //     "/password-cracking": Passwords,
+    "/password-cracking": Passwords,
     "*": Home,
   };
 </script>
