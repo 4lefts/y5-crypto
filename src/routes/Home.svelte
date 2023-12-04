@@ -33,7 +33,7 @@
     <a href="/#/substitution-cipher" style="--link-color: dodgerblue"
       >2. Substitution Cipher</a
     >
-    <a href="/#/frequency-analysis" style="--link-color: hotpink" class="not-yet"
+    <a href="/#/frequency-analysis" style="--link-color: hotpink" 
       >3. Frequency Analysis</a
     >
     <a href="/#/password-cracking" style="--link-color: darkorchid" class="not-yet"
