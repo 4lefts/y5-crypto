@@ -1,4 +1,4 @@
-<script>
+e<script>
   import Router from "svelte-spa-router";
   import Home from "./routes/Home.svelte";
   import Vocab from "./routes/Vocab.svelte";
@@ -13,7 +13,7 @@
     "/caesar-cipher": Caesar,
     "/substitution-cipher": Substitution,
     "/frequency-analysis": Frequency,
-    // "/password-cracking": Passwords,
+    "/password-cracking": Passwords,
     "*": Home,
   };
 </script>
