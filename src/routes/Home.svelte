@@ -31,13 +31,13 @@
   <nav>
     <!-- add class="not-yet" to these links to make inactive -->
     <a href="/#/caesar-cipher" style="--link-color: tomato">1. Caesar Cipher</a>
-    <a href="/#/substitution-cipher" style="--link-color: dodgerblue"
+    <a href="/#/substitution-cipher" style="--link-color: dodgerblue" class="not-yet"
       >2. Substitution Cipher</a
     >
-    <a href="/#/frequency-analysis" style="--link-color: hotpink" 
+    <a href="/#/frequency-analysis" style="--link-color: hotpink" class="not-yet"
       >3. Frequency Analysis</a
     >
-    <a href="/#/password-cracking" style="--link-color: darkorchid"
+    <a href="/#/password-cracking" style="--link-color: darkorchid" class="not-yet"
       >4. Password Cracking</a
     >
     <a href="/#/vocab" style="--link-color: teal">Useful Vocabulary</a>
