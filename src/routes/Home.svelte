@@ -31,9 +31,7 @@
   <nav>
     <!-- add class="not-yet" to these links to make inactive -->
     <a href="/#/caesar-cipher" style="--link-color: tomato">1. Caesar Cipher</a>
-    <a href="/#/substitution-cipher" style="--link-color: dodgerblue" class="not-yet"
-      >2. Substitution Cipher</a
-    >
+    <a href="/#/substitution-cipher" style="--link-color: dodgerblue">2. Substitution Cipher</a>
     <a href="/#/frequency-analysis" style="--link-color: hotpink" class="not-yet"
       >3. Frequency Analysis</a
     >
